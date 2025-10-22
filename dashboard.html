@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kerflapiac</title>
+  <title>Kerflapiac Dashboard</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -13,15 +13,14 @@
     }
 
     header {
-      position: relative;
       background-color: #222;
       color: white;
       padding: 1.5rem 2rem;
       text-align: center;
+      position: relative;
     }
 
-    /* Padlock button in the top-right corner */
-    .admin-button {
+    .logout-button {
       position: absolute;
       top: 1rem;
       right: 1.5rem;
@@ -31,7 +30,7 @@
       padding: 0.4rem 0.8rem;
       border-radius: 6px;
       cursor: pointer;
-      font-size: 1.2rem;
+      font-size: 1rem;
       transition: background 0.2s ease;
       text-decoration: none;
       display: flex;
@@ -39,18 +38,28 @@
       justify-content: center;
     }
 
-    .admin-button:hover {
+    .logout-button:hover {
       background: #777;
     }
 
     main {
       max-width: 900px;
       margin: 2rem auto;
-      padding: 1rem;
+      padding: 2rem;
       background: white;
       border-radius: 8px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
       text-align: center;
+    }
+
+    h2 {
+      margin-bottom: 1rem;
+    }
+
+    .placeholder {
+      margin-top: 2rem;
+      color: #666;
+      font-style: italic;
     }
 
     footer {
@@ -64,18 +73,35 @@
 </head>
 <body>
   <header>
-    <a href="login.html" class="admin-button" title="Admin Login">🔒</a>
-    <h1>Kerflapiac</h1>
-    <p>Your tagline or slogan here</p>
+    <h1>Kerflapiac Admin Dashboard</h1>
+    <a href="#" class="logout-button" id="logoutBtn" title="Log Out">🚪 Logout</a>
   </header>
 
   <main>
-    <h2>Welcome to Kerflapiac</h2>
-    <p>This is a basic layout to start your website. Replace this text with your own content!</p>
+    <h2>Welcome, Admin!</h2>
+    <p>You have successfully logged in.</p>
+
+    <div class="placeholder">
+      (This is where your admin controls or tools will go.)
+    </div>
   </main>
 
   <footer>
     <p>&copy; 2025 Kerflapiac. All rights reserved.</p>
   </footer>
+
+  <script>
+    // Redirect to login if not logged in
+    if (localStorage.getItem("loggedIn") !== "true") {
+      window.location.href = "login.html";
+    }
+
+    // Logout button clears the flag
+    document.getElementById("logoutBtn").addEventListener("click", function(event) {
+      event.preventDefault();
+      localStorage.removeItem("loggedIn");
+      window.location.href = "login.html";
+    });
+  </script>
 </body>
 </html>
